@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage("Package") {
       steps {
-        sleep 600
+        //sleep 600
         sh "./gradlew build"
        }
      }
