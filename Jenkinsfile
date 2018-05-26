@@ -12,12 +12,12 @@ pipeline {
      }
      stage("Docker build") {
       steps {
-        sh "docker build -t localhost:5000/calculator ."
+        sh "docker build -t registry:5000/calculator ."
        }
      }
      stage("Docker push") {
       steps {
-        sh "docker push localhost:5000/calulcator"
+        sh "docker push registry:5000/calulcator"
        }
      }
      stage("Unit test") {
