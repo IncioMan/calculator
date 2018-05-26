@@ -15,4 +15,11 @@ pipeline {
        }
      }
   }
+  post {
+    always {
+      mail to: 'alex.incerti@outlook.com',
+      subject: "COmpleted Pipeline: ${currentBuild.fullDisplayName}",
+      body: "Your build completed, please check: ${env.BUILD_URL}"
+    }
+  }
 }
