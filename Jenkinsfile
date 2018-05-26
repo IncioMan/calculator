@@ -21,7 +21,7 @@ pipeline {
      }
      stage("Docker push") {
       steps {
-        sh "docker push ${env.REISTRY}:5000/${env.IMAGE_NAME} 
+        sh "docker push ${env.REISTRY}:5000/${env.IMAGE_NAME}" 
        }
      }
      stage("Unit test") {
