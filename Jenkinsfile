@@ -16,12 +16,12 @@ pipeline {
      }
      stage("Docker build") {
       steps {
-        sh "docker build -t ${env.REISTRY}:5000/${env.IMAGE_NAME} ."
+        sh "docker build -t ${env.REGISTRY}:5000/${env.IMAGE_NAME} ."
        }
      }
      stage("Docker push") {
       steps {
-        sh "docker push ${env.REISTRY}:5000/${env.IMAGE_NAME}" 
+        sh "docker push ${env.REGISTRY}:5000/${env.IMAGE_NAME}" 
        }
      }
      stage("Unit test") {
