@@ -1,12 +1,22 @@
 pipeline {
-  agent {label 'git-jdk'}
+  agent {label 'git-jdk-docker'}
   triggers {
     pollSCM('* * * * *')
   } 
   stages {
-    stage("Compile") {
+    stage("Package") {
       steps {
-        sh "./gradlew compileJava"
+        sh "./gradlew build"
+       }
+     }
+     stage("Docker build") {
+      steps {
+        sh "docker build -t localhost:5000/calculator"
+       }
+     }
+     stage("Docker push") {
+      steps {
+        sh "docker push localhost:5000/calulcator"
        }
      }
      stage("Unit test") {
@@ -18,7 +28,7 @@ pipeline {
   post {
     always {
       mail to: 'alex.incerti@outlook.com',
-      subject: "COmpleted Pipeline: ${currentBuild.fullDisplayName}",
+      subject: "Completed Pipeline: ${currentBuild.fullDisplayName}",
       body: "Your build completed, please check: ${env.BUILD_URL}"
     }
   }
