@@ -17,7 +17,7 @@ pipeline {
      }
      stage("Docker push") {
       steps {
-        sh "docker push registry:5000/calulcator"
+        sh "docker push registry:5000/calculator"
        }
      }
      stage("Unit test") {
