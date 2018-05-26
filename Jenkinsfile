@@ -1,5 +1,8 @@
 pipeline {
   agent {label 'git-jdk'}
+  triggers {
+    pollSCM('* * * * *')
+   }
     stages {
       stage("Compile") {
         steps {
