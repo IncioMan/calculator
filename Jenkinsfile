@@ -2,7 +2,11 @@ pipeline {
   agent {label 'git-jdk-docker'}
   triggers {
     pollSCM('* * * * *')
-  } 
+  }
+  environment{
+    REGISTRY = '172.18.0.3'
+    IMAGE_NAME = 'calculator'
+  }
   stages {
     stage("Package") {
       steps {
@@ -12,12 +16,12 @@ pipeline {
      }
      stage("Docker build") {
       steps {
-        sh "docker build -t registry:5000/calculator ."
+        sh "docker build -t ${env.REISTRY}:5000/${env.IMAGE_NAME} ."
        }
      }
      stage("Docker push") {
       steps {
-        sh "docker push registry:5000/calculator"
+        sh "docker push ${env.REISTRY}:5000/${env.IMAGE_NAME} 
        }
      }
      stage("Unit test") {
