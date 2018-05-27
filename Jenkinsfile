@@ -4,7 +4,7 @@ pipeline {
     pollSCM('* * * * *')
   }
   environment{
-    REGISTRY = 'registry'
+    REGISTRY = 'my-registry'
     IMAGE_NAME = 'calculator'
   }
   stages {
